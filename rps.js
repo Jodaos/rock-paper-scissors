@@ -1,33 +1,33 @@
 $(document).ready(function(){
 // Declare variables at top, but don't assign anything to them
-var userChoice, computerChoice;
+var userChoice, computerChoice, result;
 
 var compare = function(choice1, choice2){
   if (choice1 == choice2){
-    console.log("The result is a tie!");
+    return "The result is a tie!";
   }
   else if (choice1 == "rock"){
     if (choice2 == "scissors"){
-      console.log("rock wins")
+      return "rock";
     }
     else {
-      console.log("paper wins")
+      return "paper";
     }
   }
   else if (choice1 == "paper"){
     if (choice2 == "rock"){
-      console.log("paper wins")
+      return "paper";
     }
     else {
-      console.log("scissors wins")
+      return "scissors";
     }
   }
   else{
     if (choice2 =="paper"){
-      console.log("scissors wins")
+      return "scissors";
     }
     else {
-      console.log("rock wins")
+      return "rock";
     }
   }
 }
@@ -42,8 +42,15 @@ $("#userChoice button").click(function(){
   } else {
     computerChoice = "scissors";
   } 
-  $("#computerChoice").html(computerChoice);
 
-  //compare(userChoice, computerChoice);
+  $("#userImg").html("<img src='images/" + userChoice + ".jpg'>");
+  $("#computerImg").html("<img src='images/" + computerChoice + ".jpg'>");
+
+  result = compare(userChoice, computerChoice);
+  if(result != "The result is a tie!"){
+    result = result.toUpperCase() + " WINS!";
+  }
+
+  $("#result").html(result);
 });
 });
